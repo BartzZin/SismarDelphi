@@ -1,0 +1,117 @@
+inherited Form_Pagamentos: TForm_Pagamentos
+  Caption = 'Cadastro de Pagamentos'
+  PixelsPerInch = 96
+  TextHeight = 13
+  object Label1: TLabel [0]
+    Left = 8
+    Top = 64
+    Width = 19
+    Height = 19
+    Caption = 'ID'
+    FocusControl = DBEdit1
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -16
+    Font.Name = 'Tahoma'
+    Font.Style = [fsBold]
+    ParentFont = False
+  end
+  object Label2: TLabel [1]
+    Left = 8
+    Top = 104
+    Width = 97
+    Height = 19
+    Caption = 'DESCRICAO'
+    FocusControl = DBEdit2
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -16
+    Font.Name = 'Tahoma'
+    Font.Style = [fsBold]
+    ParentFont = False
+  end
+  object Label3: TLabel [2]
+    Left = 8
+    Top = 144
+    Width = 92
+    Height = 19
+    Caption = 'CADASTRO'
+    FocusControl = DBEdit3
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -16
+    Font.Name = 'Tahoma'
+    Font.Style = [fsBold]
+    ParentFont = False
+  end
+  object DBEdit1: TDBEdit [5]
+    Left = 8
+    Top = 81
+    Width = 134
+    Height = 21
+    DataField = 'ID'
+    DataSource = ds_Padrao
+    TabOrder = 2
+  end
+  object DBEdit2: TDBEdit [6]
+    Left = 8
+    Top = 121
+    Width = 300
+    Height = 21
+    DataField = 'DESCRICAO'
+    DataSource = ds_Padrao
+    TabOrder = 3
+  end
+  object DBEdit3: TDBEdit [7]
+    Left = 8
+    Top = 161
+    Width = 134
+    Height = 21
+    DataField = 'CADASTRO'
+    DataSource = ds_Padrao
+    TabOrder = 4
+  end
+  object DBGrid1: TDBGrid [8]
+    Left = 368
+    Top = 55
+    Width = 457
+    Height = 243
+    DataSource = ds_Padrao
+    Enabled = False
+    ReadOnly = True
+    TabOrder = 5
+    TitleFont.Charset = DEFAULT_CHARSET
+    TitleFont.Color = clWindowText
+    TitleFont.Height = -11
+    TitleFont.Name = 'Tahoma'
+    TitleFont.Style = []
+  end
+  inherited qry_Padrao: TFDQuery
+    UpdateOptions.AssignedValues = [uvGeneratorName]
+    UpdateOptions.GeneratorName = 'GEN_FORMA_PAGAMENTO_ID'
+    UpdateOptions.AutoIncFields = 'ID'
+    SQL.Strings = (
+      'SELECT'
+      '    FORMA_PAGAMENTO.ID,'
+      '    FORMA_PAGAMENTO.DESCRICAO,'
+      '    FORMA_PAGAMENTO.CADASTRO'
+      'FROM FORMA_PAGAMENTO')
+    object qry_PadraoID: TIntegerField
+      FieldName = 'ID'
+      Origin = 'ID'
+      ProviderFlags = [pfInWhere, pfInKey]
+      Required = True
+    end
+    object qry_PadraoDESCRICAO: TStringField
+      FieldName = 'DESCRICAO'
+      Origin = 'DESCRICAO'
+      Required = True
+      Size = 100
+    end
+    object qry_PadraoCADASTRO: TDateField
+      FieldName = 'CADASTRO'
+      Origin = 'CADASTRO'
+      Required = True
+    end
+  end
+end

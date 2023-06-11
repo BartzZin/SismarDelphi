@@ -1,0 +1,152 @@
+unit U_PesqUsuario;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, U_FormPesquisaPadrao, Data.DB,
+  FireDAC.Stan.Intf, FireDAC.Stan.Option, FireDAC.Stan.Param,
+  FireDAC.Stan.Error, FireDAC.DatS, FireDAC.Phys.Intf, FireDAC.DApt.Intf,
+  FireDAC.Stan.Async, FireDAC.DApt, FireDAC.Comp.DataSet, FireDAC.Comp.Client,
+  Vcl.Grids, Vcl.DBGrids, Vcl.StdCtrls, Vcl.Buttons, Vcl.Mask, Vcl.ExtCtrls,
+  frxClass, frxDBSet;
+
+type
+  TForm_PesUsuarios = class(TForm_PesPadrao)
+    qryPesqPadraoID: TIntegerField;
+    qryPesqPadraoNOME: TStringField;
+    qryPesqPadraoTIPO: TStringField;
+    qryPesqPadraoCADASTRO: TDateField;
+    procedure FormShow(Sender: TObject);
+    procedure bt_PesquisaClick(Sender: TObject);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
+    procedure FormKeyPress(Sender: TObject; var Key: Char);
+    procedure cb_ChavePesquisaChange(Sender: TObject);
+    procedure bt_TransferirClick(Sender: TObject);
+    procedure DBGrid1DblClick(Sender: TObject);
+    procedure bt_ImprimirClick(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  Form_PesUsuarios: TForm_PesUsuarios;
+
+implementation
+
+{$R *.dfm}
+
+uses U_Utilitarios, U_FortesRelUsuario;
+
+procedure TForm_PesUsuarios.bt_ImprimirClick(Sender: TObject);
+var caminhorel : String;
+begin
+  inherited;
+  try
+    Form_RelUsuario := TForm_RelUsuario.Create(self);
+    Form_RelUsuario.RLLabelTitulo.Caption := 'Relatório de Usuários';
+    Form_RelUsuario.RLReportPadrao.Preview();
+  finally
+    Form_RelUsuario.Free;
+    Form_RelUsuario := Nil;
+  end;
+  end;
+
+
+procedure TForm_PesUsuarios.bt_PesquisaClick(Sender: TObject);
+begin
+  try
+  qryPesqPadrao.Close;
+  qryPesqPadrao.SQL.Clear;
+  qryPesqPadrao.Params.Clear;
+
+  qryPesqPadrao.SQL.Add('SELECT USUARIO.ID, USUARIO.NOME, USUARIO.TIPO, USUARIO.CADASTRO');
+  qryPesqPadrao.SQL.Add('FROM USUARIO');
+
+  case cb_ChavePesquisa.ItemIndex of
+    0: begin // Pesquisa Codigo
+      qryPesqPadrao.SQL.Add('WHERE USUARIO.ID = :PIDUSUARIO');
+      qryPesqPadrao.ParamByName('PIDUSUARIO').AsString := ed_PesquisaNome.Text;
+    end;
+    1: begin // Pesquisa Nome
+      qryPesqPadrao.SQL.Add('WHERE USUARIO.NOME LIKE :PNOMEUSUARIO');
+      qryPesqPadrao.ParamByName('PNOMEUSUARIO').AsString := '%' + ed_PesquisaNome.Text + '%';
+
+    end;
+    2: begin // Pesquisa Data
+      qryPesqPadrao.SQL.Add('WHERE USUARIO.CADASTRO = :PDTCADASTRO');
+      qryPesqPadrao.ParamByName('PDTCADASTRO').AsDate := StrToDate(mk_Inicio.Text);
+    end;
+    3: begin // Pesquisa Periodo
+      qryPesqPadrao.SQL.Add('WHERE USUARIO.CADASTRO BETWEEN :PCADASTROINI AND :PCADASTROFIM');
+      qryPesqPadrao.ParamByName('PCADASTROINI').AsDate := StrToDate(mk_Inicio.Text);
+      qryPesqPadrao.ParamByName('PCADASTROFIM').AsDate := StrToDate(mk_Fim.Text);
+    end;
+  end;
+
+  //Abre Query de Pesquisa
+  qryPesqPadrao.Open;
+  if qryPesqPadrao.IsEmpty then
+  begin
+    MessageDlg('Registro não encontrado!', TMsgDlgType.mtInformation, [mbOK], 0);
+  end;
+
+  except
+    MessageDlg('Tivemos um probleminha!', TMsgDlgType.mtInformation, [mbOK], 0);
+  end;
+
+
+end;
+
+procedure TForm_PesUsuarios.bt_TransferirClick(Sender: TObject);
+begin
+  if qryPesqPadrao.RecordCount > 0 then
+  begin
+  codigo := qryPesqPadraoID.AsInteger;
+  end else
+  begin
+    abort
+  end;
+end;
+
+procedure TForm_PesUsuarios.cb_ChavePesquisaChange(Sender: TObject);
+begin
+  inherited;
+  //Está Definido no objeto pai
+end;
+
+procedure TForm_PesUsuarios.DBGrid1DblClick(Sender: TObject);
+begin
+  inherited;
+  bt_Transferir.Click;
+end;
+
+procedure TForm_PesUsuarios.FormClose(Sender: TObject;
+  var Action: TCloseAction);
+begin
+  inherited;
+  qryPesqPadrao.Close;
+end;
+
+procedure TForm_PesUsuarios.FormKeyPress(Sender: TObject; var Key: Char);
+begin
+  inherited;
+  //Faz a função do tab
+  if key = #13 then
+  begin
+    key := #0;
+    Perform(WM_NEXTDLGCTL, 0, 0);
+  end;
+
+end;
+
+procedure TForm_PesUsuarios.FormShow(Sender: TObject);
+begin
+  inherited;
+  qryPesqPadrao.Close;
+  qryPesqPadrao.Open;
+end;
+
+end.

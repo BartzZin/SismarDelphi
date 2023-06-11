@@ -1,0 +1,45 @@
+inherited Form_PesqCompra: TForm_PesqCompra
+  Caption = 'Pesquisa de Compras'
+  PixelsPerInch = 96
+  TextHeight = 13
+  inherited Pnl_topPesquisa: TPanel
+    inherited cb_ChavePesquisa: TComboBox
+      Items.Strings = (
+        'CODIGO COMPRA'
+        'CODIGO FORNECEDOR'
+        'CODIGO PAGAMENTO'
+        'USUARIO'
+        'CADASTRO'
+        'PERIODO'
+        'TODOS')
+    end
+    inherited bt_Pesquisa: TBitBtn
+      OnClick = bt_PesquisaClick
+    end
+  end
+  inherited DBGrid1: TDBGrid
+    OnDblClick = DBGrid1DblClick
+  end
+  inherited qryPesqPadrao: TFDQuery
+    Active = True
+    SQL.Strings = (
+      'SELECT'
+      '    COMPRA.ID,'
+      '    COMPRA.ID_FORNECEDOR,'
+      '    FORNECEDOR.NOME,'
+      '    COMPRA.USUARIO,'
+      '    COMPRA.ID_FORMA_PAG,'
+      '    FORMA_PAGAMENTO.DESCRICAO,'
+      '    COMPRA.VALOR,'
+      '    COMPRA.CADASTRO,'
+      '    COMPRA.STATUS'
+      ''
+      'FROM COMPRA'
+      ''
+      'LEFT JOIN FORNECEDOR ON'
+      '    FORNECEDOR.ID = COMPRA.ID_FORNECEDOR'
+      ''
+      'LEFT JOIN FORMA_PAGAMENTO ON'
+      '    FORMA_PAGAMENTO.ID = COMPRA.ID_FORMA_PAG')
+  end
+end

@@ -1,0 +1,175 @@
+inherited Form_Usuarios: TForm_Usuarios
+  Caption = 'Cadastro de Usuarios'
+  Position = poDesktopCenter
+  OnShow = FormShow
+  PixelsPerInch = 96
+  TextHeight = 13
+  object Label1: TLabel [0]
+    Left = 27
+    Top = 71
+    Width = 19
+    Height = 19
+    Caption = 'ID'
+    FocusControl = dbId
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -16
+    Font.Name = 'Tahoma'
+    Font.Style = [fsBold]
+    ParentFont = False
+  end
+  object Label2: TLabel [1]
+    Left = 27
+    Top = 113
+    Width = 47
+    Height = 19
+    Caption = 'Nome'
+    FocusControl = dbNome
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -16
+    Font.Name = 'Tahoma'
+    Font.Style = [fsBold]
+    ParentFont = False
+  end
+  object Label3: TLabel [2]
+    Left = 27
+    Top = 153
+    Width = 50
+    Height = 19
+    Caption = 'Senha'
+    FocusControl = dbSenha
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -16
+    Font.Name = 'Tahoma'
+    Font.Style = [fsBold]
+    ParentFont = False
+  end
+  object Label4: TLabel [3]
+    Left = 241
+    Top = 153
+    Width = 36
+    Height = 19
+    Caption = 'Tipo'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -16
+    Font.Name = 'Tahoma'
+    Font.Style = [fsBold]
+    ParentFont = False
+  end
+  object Label5: TLabel [4]
+    Left = 120
+    Top = 312
+    Width = 55
+    Height = 13
+    Caption = 'CADASTRO'
+  end
+  object Label6: TLabel [5]
+    Left = 493
+    Top = 153
+    Width = 73
+    Height = 19
+    Caption = 'Cadastro'
+    FocusControl = dbCadastro
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -16
+    Font.Name = 'Tahoma'
+    Font.Style = [fsBold]
+    ParentFont = False
+  end
+  object dbId: TDBEdit [8]
+    Left = 27
+    Top = 89
+    Width = 100
+    Height = 21
+    DataField = 'ID'
+    DataSource = ds_Padrao
+    Enabled = False
+    ReadOnly = True
+    TabOrder = 2
+  end
+  object dbNome: TDBEdit [9]
+    Left = 27
+    Top = 131
+    Width = 600
+    Height = 21
+    DataField = 'NOME'
+    DataSource = ds_Padrao
+    TabOrder = 3
+  end
+  object dbSenha: TDBEdit [10]
+    Left = 27
+    Top = 171
+    Width = 200
+    Height = 21
+    DataField = 'SENHA'
+    DataSource = ds_Padrao
+    PasswordChar = '*'
+    TabOrder = 4
+  end
+  object dbCadastro: TDBEdit [11]
+    Left = 493
+    Top = 171
+    Width = 134
+    Height = 21
+    DataField = 'CADASTRO'
+    DataSource = ds_Padrao
+    Enabled = False
+    ParentShowHint = False
+    ReadOnly = True
+    ShowHint = False
+    TabOrder = 5
+  end
+  object dbTipo: TDBComboBox [12]
+    Left = 241
+    Top = 171
+    Width = 200
+    Height = 21
+    DataField = 'TIPO'
+    DataSource = ds_Padrao
+    Items.Strings = (
+      'ADMINISTRADOR'
+      'APOIO')
+    TabOrder = 6
+  end
+  inherited qry_Padrao: TFDQuery
+    UpdateOptions.AssignedValues = [uvFetchGeneratorsPoint, uvGeneratorName]
+    UpdateOptions.FetchGeneratorsPoint = gpImmediate
+    UpdateOptions.GeneratorName = 'GEN_USUARIO_ID'
+    UpdateOptions.AutoIncFields = 'ID'
+    SQL.Strings = (
+      'Select * from usuario')
+    object qry_PadraoID: TIntegerField
+      AutoGenerateValue = arAutoInc
+      FieldName = 'ID'
+      Origin = 'ID'
+      ProviderFlags = [pfInWhere, pfInKey]
+    end
+    object qry_PadraoNOME: TStringField
+      FieldName = 'NOME'
+      Origin = 'NOME'
+      Required = True
+      Size = 100
+    end
+    object qry_PadraoSENHA: TStringField
+      FieldName = 'SENHA'
+      Origin = 'SENHA'
+      Required = True
+      Size = 30
+    end
+    object qry_PadraoTIPO: TStringField
+      FieldName = 'TIPO'
+      Origin = 'TIPO'
+      Required = True
+      Size = 30
+    end
+    object qry_PadraoCADASTRO: TDateField
+      FieldName = 'CADASTRO'
+      Origin = 'CADASTRO'
+      Required = True
+    end
+  end
+end

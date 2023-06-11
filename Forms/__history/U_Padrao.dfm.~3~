@@ -1,0 +1,48 @@
+object Form_Padrao: TForm_Padrao
+  Left = 0
+  Top = 0
+  BorderStyle = bsDialog
+  Caption = 'Formalario Padrao'
+  ClientHeight = 309
+  ClientWidth = 645
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  KeyPreview = True
+  OldCreateOrder = False
+  OnKeyPress = FormKeyPress
+  PixelsPerInch = 96
+  TextHeight = 13
+  object Panel1: TPanel
+    Left = 0
+    Top = 0
+    Width = 645
+    Height = 49
+    Align = alTop
+    Color = clActiveCaption
+    ParentBackground = False
+    TabOrder = 0
+    object BitBtn1: TBitBtn
+      Left = 8
+      Top = 3
+      Width = 90
+      Height = 45
+      Caption = 'BitBtn1'
+      TabOrder = 0
+    end
+  end
+  object Panel2: TPanel
+    Left = 0
+    Top = 268
+    Width = 645
+    Height = 41
+    Align = alBottom
+    Color = clActiveCaption
+    ParentBackground = False
+    TabOrder = 1
+    ExplicitTop = 47
+  end
+end

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<TfrxReport Version="2023.1.3" DotMatrixReport="False" IniFile="\Software\Fast Reports" PreviewOptions.Buttons="167935" PreviewOptions.Zoom="1" PrintOptions.Printer="Default" PrintOptions.PrintOnSheet="0" ReportOptions.CreateDate="45048,8622068171" ReportOptions.Description.Text="" ReportOptions.LastChange="45048,8805429977" ScriptLanguage="PascalScript" ScriptText.Text="begin&#13;&#10;&#13;&#10;end.">
+  <Datasets>
+    <item DataSet="dsRel_Pes_Padrao" DataSetName="frxDB_Usuarios"/>
+  </Datasets>
+  <TfrxDataPage Name="Data" HGuides.Text="" VGuides.Text="" Height="1000" Left="0" Top="0" Width="1000"/>
+  <TfrxReportPage Name="Page1" HGuides.Text="" VGuides.Text="" PaperWidth="210" PaperHeight="297" PaperSize="9" LeftMargin="15" RightMargin="15" TopMargin="15" BottomMargin="15" ColumnWidth="0" ColumnPositions.Text="" Frame.Typ="15" MirrorMode="0">
+    <TfrxReportTitle Name="Titulo" FillType="ftBrush" FillGap.Top="0" FillGap.Left="0" FillGap.Bottom="0" FillGap.Right="0" Frame.Typ="0" Height="79,37013" Left="0" Top="18,89765" Width="680,3154">
+      <TfrxMemoView Name="Memo1" Align="baWidth" AllowVectorExport="True" Left="0" Top="34,01577" Width="680,3154" Height="22,67718" Font.Charset="1" Font.Color="0" Font.Height="-20" Font.Name="Arial" Font.Style="5" Frame.Typ="0" HAlign="haCenter" ParentFont="False" Text="RELATÓRIO DE USUÁRIOS DO SISTEMA"/>
+      <TfrxMemoView Name="Date" IndexTag="1" AllowVectorExport="True" Left="529,1342" Top="7,55906" Width="64,25201" Height="18,89765" Font.Charset="1" Font.Color="0" Font.Height="-12" Font.Name="Arial" Font.Style="0" Frame.Typ="0" HAlign="haCenter" ParentFont="False" Text="[Date]"/>
+      <TfrxMemoView Name="Time" IndexTag="1" AllowVectorExport="True" Left="593,38621" Top="7,55906" Width="52,91342" Height="18,89765" Font.Charset="1" Font.Color="0" Font.Height="-12" Font.Name="Arial" Font.Style="0" Frame.Typ="0" HAlign="haCenter" ParentFont="False" Text="[Time]"/>
+      <TfrxMemoView Name="Page" IndexTag="1" AllowVectorExport="True" Left="642,5201" Top="7,55906" Width="37,7953" Height="18,89765" Font.Charset="1" Font.Color="0" Font.Height="-12" Font.Name="Arial" Font.Style="0" Frame.Typ="0" HAlign="haCenter" ParentFont="False" Text="[Page]"/>
+      <TfrxMemoView Name="Memo6" AllowVectorExport="True" Left="83,14966" Top="7,55906" Width="94,48825" Height="18,89765" Frame.Typ="0" Text="Sismar ERP"/>
+    </TfrxReportTitle>
+    <TfrxMasterData Name="MasterData1" FillType="ftBrush" FillGap.Top="0" FillGap.Left="0" FillGap.Bottom="0" FillGap.Right="0" Frame.Typ="0" Height="22,67718" Left="0" Top="204,09462" Width="680,3154" ColumnWidth="0" ColumnGap="0" DataSet="dsRel_Pes_Padrao" DataSetName="frxDB_Usuarios" RowCount="0">
+      <TfrxMemoView Name="frxDB_UsuariosID" IndexTag="1" AllowVectorExport="True" Left="3,77953" Top="0" Width="79,37013" Height="18,89765" DataField="ID" DataSet="dsRel_Pes_Padrao" DataSetName="frxDB_Usuarios" Font.Charset="1" Font.Color="0" Font.Height="-13" Font.Name="Arial" Font.Style="0" Frame.Typ="0" ParentFont="False" Text="[frxDB_Usuarios.&#34;ID&#34;]"/>
+      <TfrxMemoView Name="frxDB_UsuariosNOME" IndexTag="1" AllowVectorExport="True" Left="83,14966" Top="0" Width="306,14193" Height="18,89765" DataField="NOME" DataSet="dsRel_Pes_Padrao" DataSetName="frxDB_Usuarios" Font.Charset="1" Font.Color="0" Font.Height="-13" Font.Name="Arial" Font.Style="0" Frame.Typ="0" ParentFont="False" Text="[frxDB_Usuarios.&#34;NOME&#34;]"/>
+      <TfrxMemoView Name="frxDB_UsuariosCADASTRO" IndexTag="1" AllowVectorExport="True" Left="555,59091" Top="0" Width="79,37013" Height="18,89765" DataField="CADASTRO" DataSet="dsRel_Pes_Padrao" DataSetName="frxDB_Usuarios" Font.Charset="1" Font.Color="0" Font.Height="-13" Font.Name="Arial" Font.Style="0" Frame.Typ="0" ParentFont="False" Text="[frxDB_Usuarios.&#34;CADASTRO&#34;]"/>
+      <TfrxMemoView Name="frxDB_UsuariosTIPO" IndexTag="1" AllowVectorExport="True" Left="389,29159" Top="0" Width="166,29932" Height="18,89765" DataField="TIPO" DataSet="dsRel_Pes_Padrao" DataSetName="frxDB_Usuarios" Font.Charset="1" Font.Color="0" Font.Height="-13" Font.Name="Arial" Font.Style="0" Frame.Typ="0" ParentFont="False" Text="[frxDB_Usuarios.&#34;TIPO&#34;]"/>
+    </TfrxMasterData>
+    <TfrxHeader Name="Header1" FillType="ftBrush" FillGap.Top="0" FillGap.Left="0" FillGap.Bottom="0" FillGap.Right="0" Frame.Typ="0" Height="22,67718" Left="0" Top="158,74026" Width="680,3154">
+      <TfrxMemoView Name="Memo2" AllowVectorExport="True" Left="3,77953" Top="-7,55906" Width="83,14966" Height="18,89765" Font.Charset="1" Font.Color="0" Font.Height="-13" Font.Name="Arial" Font.Style="1" Frame.Typ="0" ParentFont="False" Text="Código"/>
+      <TfrxMemoView Name="Memo3" AllowVectorExport="True" Left="83,14966" Top="-7,55906" Width="306,14193" Height="18,89765" Font.Charset="1" Font.Color="0" Font.Height="-13" Font.Name="Arial" Font.Style="1" Frame.Typ="0" ParentFont="False" Text="Nome"/>
+      <TfrxMemoView Name="Memo4" AllowVectorExport="True" Left="389,29159" Top="-7,55906" Width="306,14193" Height="18,89765" Font.Charset="1" Font.Color="0" Font.Height="-13" Font.Name="Arial" Font.Style="1" Frame.Typ="0" ParentFont="False" Text="Tipo"/>
+      <TfrxMemoView Name="Memo5" AllowVectorExport="True" Left="555,59091" Top="-7,55906" Width="260,78757" Height="18,89765" Font.Charset="1" Font.Color="0" Font.Height="-13" Font.Name="Arial" Font.Style="1" Frame.Typ="0" ParentFont="False" Text="Data"/>
+    </TfrxHeader>
+  </TfrxReportPage>
+</TfrxReport>

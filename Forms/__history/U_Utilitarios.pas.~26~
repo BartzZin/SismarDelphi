@@ -1,0 +1,119 @@
+unit U_Utilitarios;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, StrUtils, IniFiles, Vcl.Buttons;
+
+type
+  TForm_Utilitarios = class(TForm)
+  procedure AbreTela(NomeForm: TFormClass ; limpa : Boolean);
+  procedure AbreTela2(NomeForm: TFormClass ; limpa : Boolean ; Pertence: TComponent);
+  procedure prcGravarArquivoINI(Caminho: String);
+  function fncLerArquivoINI: String;
+  procedure mouseHover(objbotao : TSpeedButton; style : boolean);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  Form_Utilitarios: TForm_Utilitarios;
+
+implementation
+
+uses U_Usuarios, U_Clientes, U_DM, U_Empresa, U_Padrao;
+
+{$R *.dfm}
+
+procedure TForm_Utilitarios.AbreTela(NomeForm: TFormClass; limpa : Boolean);
+begin
+  with NomeForm do
+  begin
+    try
+      TForm(NomeForm) := NomeForm.Create(self);
+      TForm(NomeForm).ShowModal;
+    finally
+      if limpa then
+      begin
+        TForm(NomeForm).Free;
+        TForm(NomeForm) := nil;
+      end;
+    end;
+  end;
+
+end;
+
+procedure TForm_Utilitarios.AbreTela2(NomeForm: TFormClass; limpa : Boolean; Pertence: TComponent);
+begin
+  with NomeForm do
+  begin
+    try
+      TForm(NomeForm) := NomeForm.Create(Pertence);
+      TForm(NomeForm).ShowModal;
+    finally
+      if limpa then
+      begin
+        TForm(NomeForm).Free;
+        TForm(NomeForm) := nil;
+      end;
+    end;
+  end;
+
+end;
+
+function TForm_Utilitarios.fncLerArquivoINI: String;
+var
+  iniFile, FServidor: String;
+  ini : TiniFile;
+begin
+  iniFile := ChangeFileExt( Application.Exename, '.ini' );
+  ini     := TIniFile.Create( iniFile );
+  try
+    FServidor := ini.ReadString('Configuração', 'Servidor', '');
+  finally
+    Result := FServidor;
+    ini.Free;
+  end;
+
+end;
+
+
+procedure TForm_Utilitarios.mouseHover(objbotao: TSpeedButton; style: boolean);
+begin
+  if style then
+  begin
+    if objbotao.Font.Size < 11  then
+    begin
+      objbotao.Font.Size := objbotao.Font.Size + 1;
+      objbotao.Font.Color := clGreen;
+    end;
+  end else
+  begin
+    if objbotao.Font.Size > 10 then
+    begin
+      objbotao.Font.Size := objbotao.Font.Size - 1;
+      objbotao.Font.Color := clBlack;
+    end;
+
+  end;
+end;
+
+procedure TForm_Utilitarios.prcGravarArquivoINI(Caminho: String);
+var
+  iniFile: String;
+  ini : TiniFile;
+  begin
+    iniFile := ChangeFileExt( Application.Exename, '.ini' );
+    ini     := TIniFile.Create( iniFile );
+    try
+      ini.WriteString('Configuração', 'Servidor', Caminho);
+    finally
+      ini.Free;
+    end;
+end;
+
+end.
+

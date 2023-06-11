@@ -1,0 +1,190 @@
+unit U_PesqCompra;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, U_FormPesquisaPadrao, Data.DB,
+  FireDAC.Stan.Intf, FireDAC.Stan.Option, FireDAC.Stan.Param,
+  FireDAC.Stan.Error, FireDAC.DatS, FireDAC.Phys.Intf, FireDAC.DApt.Intf,
+  FireDAC.Stan.Async, FireDAC.DApt, FireDAC.Comp.DataSet, FireDAC.Comp.Client,
+  Vcl.Grids, Vcl.DBGrids, Vcl.StdCtrls, Vcl.Buttons, Vcl.Mask, Vcl.ExtCtrls;
+
+type
+  TForm_PesqCompra = class(TForm_PesPadrao)
+    procedure bt_PesquisaClick(Sender: TObject);
+    procedure cb_ChavePesquisaChange(Sender: TObject);
+    procedure DBGrid1DblClick(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  Form_PesqCompra: TForm_PesqCompra;
+
+implementation
+
+{$R *.dfm}
+
+procedure TForm_PesqCompra.bt_PesquisaClick(Sender: TObject);
+begin
+  inherited;
+    try
+    qryPesqPadrao.Close;
+    qryPesqPadrao.SQL.Clear;
+    qryPesqPadrao.Params.Clear;
+
+    qryPesqPadrao.SQL.Add('SELECT '+
+      'COMPRA.ID, '+
+      'COMPRA.ID_FORNECEDOR,'+
+      'FORNECEDOR.NOME,'+
+      'COMPRA.USUARIO,'+
+      'COMPRA.ID_FORMA_PAG,'+
+      'FORMA_PAGAMENTO.DESCRICAO,'+
+      'COMPRA.VALOR,'+
+      'COMPRA.CADASTRO,'+
+      'COMPRA.STATUS');
+    qryPesqPadrao.SQL.Add('FROM COMPRA');
+    qryPesqPadrao.SQL.Add('LEFT JOIN FORNECEDOR ON');
+    qryPesqPadrao.SQL.Add('FORNECEDOR.ID = COMPRA.ID_FORNECEDOR');
+    qryPesqPadrao.SQL.Add('LEFT JOIN FORMA_PAGAMENTO ON');
+    qryPesqPadrao.SQL.Add('FORMA_PAGAMENTO.ID = COMPRA.ID_FORMA_PAG');
+
+    case cb_ChavePesquisa.ItemIndex of
+      0: begin //      CODIGO COMPRA
+        qryPesqPadrao.SQL.Add('WHERE compra.id = :PIDCOMPRA');
+        qryPesqPadrao.ParamByName('PIDCOMPRA').AsString := ed_PesquisaNome.Text;
+      end;
+      1: begin //      CODIGO FORNECEDOR
+        qryPesqPadrao.SQL.Add('WHERE COMPRA.ID_FORNECEDOR = :PIDFORNECEDOR');
+        qryPesqPadrao.ParamByName('PIDFORNECEDOR').AsString := ed_PesquisaNome.Text;
+
+      end;
+      2: begin //      CODIGO PAGAMENTO
+        qryPesqPadrao.SQL.Add('WHERE COMPRA.ID_FORMA_PAG = :PIDFORMPG');
+        qryPesqPadrao.ParamByName('PIDFORMPG').AsString := ed_PesquisaNome.Text;
+      end;
+      3: begin //      USUARIO
+        qryPesqPadrao.SQL.Add('WHERE COMPRA.USUARIO = :PUSUARIO');
+        qryPesqPadrao.ParamByName('PUSUARIO').AsString := ed_PesquisaNome.Text;
+      end;
+      4: begin //      CADASTRO
+        qryPesqPadrao.SQL.Add('WHERE COMPRA.CADASTRO = :PCADASTRO');
+        qryPesqPadrao.ParamByName('PCADASTRO').AsDate := StrToDate(mk_Inicio.Text);
+      end;
+      5: begin //      PERIODO
+        qryPesqPadrao.SQL.Add('WHERE COMPRA.CADASTRO BETWEEN :PCADASTROINI AND :PCADASTROFIM');
+        qryPesqPadrao.ParamByName('PCADASTROINI').AsDate := StrToDate(mk_Inicio.Text);
+        qryPesqPadrao.ParamByName('PCADASTROFIM').AsDate := StrToDate(mk_Fim.Text);
+      end;
+      6: begin//      TODOS
+
+      end;
+
+    end;
+
+    //Abre Query de Pesquisa
+    qryPesqPadrao.SQL.Add('ORDER BY 1');
+    qryPesqPadrao.Open;
+    if qryPesqPadrao.IsEmpty then
+    begin
+      MessageDlg('Registro não encontrado!', TMsgDlgType.mtInformation, [mbOK], 0);
+    end;
+
+    except
+      MessageDlg('Tivemos um probleminha!', TMsgDlgType.mtInformation, [mbOK], 0);
+    end;
+
+end;
+
+procedure TForm_PesqCompra.cb_ChavePesquisaChange(Sender: TObject);
+begin
+  inherited;
+    case cb_ChavePesquisa.ItemIndex of
+    0: begin //      CODIGO COMPRA
+      ed_PesquisaNome.Visible := true;
+      lbl_descPesquisa.Visible := True;
+      lbl_descPesquisa.Caption := 'Codigo compra';
+
+      lbl_dtinicio.Visible := False;
+      mk_Inicio.Visible := False;
+      lbl_dtFim.Visible := False;
+      mk_Fim.Visible := False;
+
+      ed_PesquisaNome.SetFocus;
+    end;
+
+    1: begin //      CODIGO FORNECEDOR
+      ed_PesquisaNome.Visible := True;
+      lbl_descPesquisa.Visible := True;
+      lbl_descPesquisa.Caption := 'Codifo fornecedor';
+
+      lbl_dtinicio.Visible := False;
+      mk_Inicio.Visible := False;
+      lbl_dtFim.Visible := False;
+      mk_Fim.Visible := False;
+
+      ed_PesquisaNome.SetFocus;
+    end;
+
+    2: begin //      CODIGO PAGAMENTO
+      ed_PesquisaNome.Visible := True;
+      lbl_descPesquisa.Visible := True;
+      lbl_descPesquisa.Caption := 'Codifo pagamento';
+
+      lbl_dtinicio.Visible := False;
+      mk_Inicio.Visible := False;
+      lbl_dtFim.Visible := False;
+      mk_Fim.Visible := False;
+
+      ed_PesquisaNome.SetFocus;
+    end;
+
+    3: begin //      USUARIO
+      ed_PesquisaNome.Visible := True;
+      lbl_descPesquisa.Visible := True;
+      lbl_descPesquisa.Caption := 'Codifo pagamento';
+
+      lbl_dtinicio.Visible := False;
+      mk_Inicio.Visible := False;
+      lbl_dtFim.Visible := False;
+      mk_Fim.Visible := False;
+
+      ed_PesquisaNome.SetFocus;
+    end;
+
+    4: begin //     Cadastro
+      ed_PesquisaNome.Visible := False;
+      lbl_descPesquisa.Visible := False;
+
+      mk_Inicio.Visible := True;
+      lbl_dtinicio.Visible := True;
+      mk_Fim.Visible := False;
+      lbl_dtFim.Visible := False;
+
+      mk_Inicio.SetFocus;
+    end;
+
+    5: begin  //      PERIODO
+      ed_PesquisaNome.Visible := False;
+      lbl_descPesquisa.Visible := False;
+
+      mk_Inicio.Visible := True;
+      lbl_dtinicio.Visible := True;
+      mk_Fim.Visible := True;
+      lbl_dtFim.Visible := True;
+
+      mk_Inicio.SetFocus;
+    end;
+  end;
+end;
+
+procedure TForm_PesqCompra.DBGrid1DblClick(Sender: TObject);
+begin
+  inherited;
+  bt_Transferir.Click;
+end;
+
+end.

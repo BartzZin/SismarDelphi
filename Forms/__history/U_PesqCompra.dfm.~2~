@@ -1,0 +1,17 @@
+inherited Form_PesqCompra: TForm_PesqCompra
+  Caption = 'Pesquisa de Compras'
+  PixelsPerInch = 96
+  TextHeight = 13
+  inherited Pnl_topPesquisa: TPanel
+    inherited cb_ChavePesquisa: TComboBox
+      Items.Strings = (
+        'CODIGO COMPRA'
+        'CODIGO FORNECEDOR'
+        'CODIGO PAGAMENTO'
+        'USUARIO'
+        'CADASTRO'
+        'PERIODO'
+        'TODOS')
+    end
+  end
+end

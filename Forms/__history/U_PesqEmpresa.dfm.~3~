@@ -1,0 +1,38 @@
+inherited Form_PesEmpresa: TForm_PesEmpresa
+  Caption = 'Pesquisa de Empresa'
+  OnClose = FormClose
+  OnKeyPress = FormKeyPress
+  OnShow = FormShow
+  PixelsPerInch = 96
+  TextHeight = 13
+  inherited Pnl_topPesquisa: TPanel
+    inherited bt_Pesquisa: TBitBtn
+      OnClick = bt_PesquisaClick
+    end
+    inherited bt_Transferir: TBitBtn
+      OnClick = bt_TransferirClick
+    end
+  end
+  inherited DBGrid1: TDBGrid
+    OnDblClick = DBGrid1DblClick
+  end
+  inherited qryPesqPadrao: TFDQuery
+    SQL.Strings = (
+      'SELECT'
+      '    EMPRESA.ID,'
+      '    EMPRESA.RAZAO_SOCIAL,'
+      '    EMPRESA.N_FANTASIA,'
+      '    EMPRESA.CPF_CNPJ,'
+      '    EMPRESA.ENDERECO,'
+      '    EMPRESA.NUMERO,'
+      '    EMPRESA.BAIRRO,'
+      '    EMPRESA.CIDADE,'
+      '    EMPRESA.UF,'
+      '    EMPRESA.TELEFONE,'
+      '    EMPRESA.EMAIL,'
+      '    EMPRESA.CADASTRO,'
+      '    EMPRESA.CEP'
+      ''
+      'FROM EMPRESA')
+  end
+end

@@ -1,0 +1,77 @@
+object Form_RelPAdrao: TForm_RelPAdrao
+  Left = 0
+  Top = 0
+  Caption = 'Relatorio Padrao'
+  ClientHeight = 657
+  ClientWidth = 792
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  OldCreateOrder = False
+  PixelsPerInch = 96
+  TextHeight = 13
+  object RLReportPadrao: TRLReport
+    Left = 0
+    Top = 0
+    Width = 794
+    Height = 1123
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clBlack
+    Font.Height = -13
+    Font.Name = 'Arial'
+    Font.Style = []
+    object RLBandHeader: TRLBand
+      Left = 38
+      Top = 105
+      Width = 718
+      Height = 25
+      BandType = btColumnHeader
+    end
+    object RLBandTitle: TRLBand
+      Left = 38
+      Top = 38
+      Width = 718
+      Height = 51
+      BandType = btTitle
+      object RLSystemInfo1: TRLSystemInfo
+        Left = 536
+        Top = 16
+        Width = 145
+        Height = 16
+        Info = itFullDate
+        Text = ''
+      end
+      object RLSystemInfo2: TRLSystemInfo
+        Left = 680
+        Top = 16
+        Width = 39
+        Height = 16
+        Info = itPageNumber
+        Text = ''
+      end
+    end
+    object RLBandColumHeader: TRLBand
+      Left = 38
+      Top = 89
+      Width = 718
+      Height = 16
+      BandType = btColumnHeader
+    end
+    object RLBandItens: TRLBand
+      Left = 38
+      Top = 130
+      Width = 718
+      Height = 16
+    end
+    object RLBandFooter: TRLBand
+      Left = 38
+      Top = 146
+      Width = 718
+      Height = 24
+      BandType = btFooter
+    end
+  end
+end

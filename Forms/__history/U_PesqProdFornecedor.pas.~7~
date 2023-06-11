@@ -1,0 +1,71 @@
+unit U_PesqProdFornecedor;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Data.DB, Vcl.ExtCtrls, Vcl.DBCtrls,
+  Vcl.Grids, Vcl.DBGrids, FireDAC.Stan.Intf, FireDAC.Stan.Option,
+  FireDAC.Stan.Param, FireDAC.Stan.Error, FireDAC.DatS, FireDAC.Phys.Intf,
+  FireDAC.DApt.Intf, FireDAC.Stan.Async, FireDAC.DApt, FireDAC.Comp.DataSet,
+  FireDAC.Comp.Client, Vcl.StdCtrls;
+
+type
+  TForm_PesForneProduto = class(TForm)
+    DBGrid1: TDBGrid;
+    Button1: TButton;
+    Button2: TButton;
+    qry_ProdFornecedor: TFDQuery;
+    DSProdForne: TDataSource;
+    qry_ProdFornecedorID: TIntegerField;
+    qry_ProdFornecedorNOME: TStringField;
+    bnt_SelectFornecedor: TButton;
+    procedure Button1Click(Sender: TObject);
+    procedure Button2Click(Sender: TObject);
+    procedure FormShow(Sender: TObject);
+    procedure bnt_SelectFornecedorClick(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  Form_PesForneProduto: TForm_PesForneProduto;
+
+implementation
+
+{$R *.dfm}
+
+uses U_DM, U_Produtos;
+
+procedure TForm_PesForneProduto.bnt_SelectFornecedorClick(Sender: TObject);
+begin
+  Form_Produtos.dbe_ProdFor.Text := IntToStr(qry_ProdFornecedorID.Value);
+end;
+
+procedure TForm_PesForneProduto.Button1Click(Sender: TObject);
+begin
+  try
+    qry_ProdFornecedor.Prior;
+  except
+    Abort
+  end;
+end;
+
+procedure TForm_PesForneProduto.Button2Click(Sender: TObject);
+begin
+  try
+    qry_ProdFornecedor.Next;
+  except
+    Abort
+  end;
+end;
+
+procedure TForm_PesForneProduto.FormShow(Sender: TObject);
+begin
+  qry_ProdFornecedor.Close;
+  qry_ProdFornecedor.Open;
+end;
+
+end.

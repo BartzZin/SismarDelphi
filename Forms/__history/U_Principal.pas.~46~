@@ -1,0 +1,269 @@
+unit U_Principal;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Buttons, Vcl.ExtCtrls, Vcl.ComCtrls,
+  Vcl.Menus;
+
+type
+  TForm_Principal = class(TForm)
+    pnl_Header: TPanel;
+    SpeedButton1: TSpeedButton;
+    SpeedButton2: TSpeedButton;
+    SpeedButton3: TSpeedButton;
+    SpeedButton5: TSpeedButton;
+    SpeedButton6: TSpeedButton;
+    SpeedButton7: TSpeedButton;
+    SpeedButton8: TSpeedButton;
+    SpeedButton9: TSpeedButton;
+    SpeedButton10: TSpeedButton;
+    StatusBar1: TStatusBar;
+    Timer1: TTimer;
+    MainMenu1: TMainMenu;
+    Cadastro1: TMenuItem;
+    Usurio1: TMenuItem;
+    Empresa1: TMenuItem;
+    Cliente1: TMenuItem;
+    Produtos1: TMenuItem;
+    FormaPGTO1: TMenuItem;
+    FormaPGTO2: TMenuItem;
+    Compas1: TMenuItem;
+    Vendas1: TMenuItem;
+    Relatrios1: TMenuItem;
+    Usurios1: TMenuItem;
+    ListaFornecedores1: TMenuItem;
+    ListaClientes1: TMenuItem;
+    ListaProdutos1: TMenuItem;
+    ListaVendas1: TMenuItem;
+    ListaCompras1: TMenuItem;
+    procedure Timer1Timer(Sender: TObject);
+    procedure SpeedButton10Click(Sender: TObject);
+    procedure FormShow(Sender: TObject);
+    procedure SpeedButton1Click(Sender: TObject);
+    procedure SpeedButton2Click(Sender: TObject);
+    procedure SpeedButton3Click(Sender: TObject);
+    procedure Usurio1Click(Sender: TObject);
+    procedure Empresa1Click(Sender: TObject);
+    procedure Cliente1Click(Sender: TObject);
+    procedure SpeedButton5Click(Sender: TObject);
+    procedure Produtos1Click(Sender: TObject);
+    procedure SpeedButton6Click(Sender: TObject);
+    procedure FormaPGTO1Click(Sender: TObject);
+    procedure SpeedButton9Click(Sender: TObject);
+    procedure SpeedButton1MouseEnter(Sender: TObject);
+    procedure SpeedButton1MouseLeave(Sender: TObject);
+    procedure SpeedButton2MouseEnter(Sender: TObject);
+    procedure SpeedButton2MouseLeave(Sender: TObject);
+    procedure SpeedButton3MouseEnter(Sender: TObject);
+    procedure SpeedButton3MouseLeave(Sender: TObject);
+    procedure SpeedButton5MouseEnter(Sender: TObject);
+    procedure SpeedButton5MouseLeave(Sender: TObject);
+    procedure SpeedButton6MouseEnter(Sender: TObject);
+    procedure SpeedButton6MouseLeave(Sender: TObject);
+    procedure SpeedButton7MouseEnter(Sender: TObject);
+    procedure SpeedButton7MouseLeave(Sender: TObject);
+    procedure SpeedButton8MouseEnter(Sender: TObject);
+    procedure SpeedButton8MouseLeave(Sender: TObject);
+    procedure SpeedButton9MouseEnter(Sender: TObject);
+    procedure SpeedButton9MouseLeave(Sender: TObject);
+    procedure SpeedButton10MouseEnter(Sender: TObject);
+    procedure SpeedButton10MouseLeave(Sender: TObject);
+
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  Form_Principal: TForm_Principal;
+
+implementation
+
+{$R *.dfm}
+
+uses U_Usuarios, U_DM, U_Empresa, U_Clientes, U_Utilitarios, U_Produtos, U_FormaPagamento,
+  U_Login;
+
+procedure TForm_Principal.Cliente1Click(Sender: TObject);
+begin
+  Form_Utilitarios.AbreTela(TForm_Clientes, True);
+end;
+
+procedure TForm_Principal.Empresa1Click(Sender: TObject);
+begin
+  Form_Utilitarios.AbreTela(TForm_Empresa, True);
+end;
+
+procedure TForm_Principal.FormaPGTO1Click(Sender: TObject);
+begin
+  Form_Utilitarios.AbreTela(TForm_Pagamentos, True);
+end;
+
+procedure TForm_Principal.FormShow(Sender: TObject);
+begin
+  if DM.stConexao = False then
+  begin
+    Close;
+  end;
+end;
+
+procedure TForm_Principal.Produtos1Click(Sender: TObject);
+begin
+  Form_Utilitarios.AbreTela(TForm_Produtos, True);
+end;
+
+procedure TForm_Principal.SpeedButton10Click(Sender: TObject);
+begin
+  if MessageDlg('Deseja sair do sistema ?', mtConfirmation, [mbOk, mbNo], 0) = mrOk then
+    Close;
+end;
+
+procedure TForm_Principal.SpeedButton1Click(Sender: TObject);
+begin
+  Form_Utilitarios.AbreTela(TForm_Usuarios, True);
+end;
+
+
+procedure TForm_Principal.SpeedButton2Click(Sender: TObject);
+begin
+  Form_Utilitarios.AbreTela(TForm_Empresa, True);
+end;
+
+
+procedure TForm_Principal.SpeedButton3Click(Sender: TObject);
+begin
+  Form_Utilitarios.AbreTela(TForm_Clientes, True);
+end;
+
+
+procedure TForm_Principal.SpeedButton5Click(Sender: TObject);
+begin
+  Form_Utilitarios.AbreTela(TForm_Produtos, True);
+end;
+
+
+
+procedure TForm_Principal.SpeedButton6Click(Sender: TObject);
+begin
+  Form_Utilitarios.AbreTela(TForm_Pagamentos, True);
+end;
+
+procedure TForm_Principal.SpeedButton9Click(Sender: TObject);
+begin
+  Form_Login.trocaUsuario := True;
+  Form_Login.Visible := true;
+  close;
+end;
+
+procedure TForm_Principal.Timer1Timer(Sender: TObject);
+begin
+  //Insere dados StatusBar
+  StatusBar1.Panels[0].Text := DateToStr(now);
+  StatusBar1.Panels[1].Text := TimeToStr(now);
+  StatusBar1.Panels[2].Text := 'Seja Bem-Vindo ao Sistema - Usuário logado: ' + UpperCase(Form_Login.usuarioLogado);
+end;
+
+procedure TForm_Principal.Usurio1Click(Sender: TObject);
+begin
+  Form_Utilitarios.AbreTela(TForm_Usuarios, True);
+end;
+
+
+//
+//
+//
+//Estilização
+procedure TForm_Principal.SpeedButton1MouseEnter(Sender: TObject);
+begin
+  Form_Utilitarios.mouseHover(SpeedButton1, True);
+end;
+
+procedure TForm_Principal.SpeedButton1MouseLeave(Sender: TObject);
+begin
+  Form_Utilitarios.mouseHover(SpeedButton1, False);
+end;
+
+procedure TForm_Principal.SpeedButton2MouseEnter(Sender: TObject);
+begin
+  Form_Utilitarios.mouseHover(SpeedButton2, True);
+end;
+
+procedure TForm_Principal.SpeedButton2MouseLeave(Sender: TObject);
+begin
+  Form_Utilitarios.mouseHover(SpeedButton2, False);
+end;
+
+procedure TForm_Principal.SpeedButton3MouseEnter(Sender: TObject);
+begin
+  Form_Utilitarios.mouseHover(SpeedButton3, True);
+end;
+
+procedure TForm_Principal.SpeedButton3MouseLeave(Sender: TObject);
+begin
+  Form_Utilitarios.mouseHover(SpeedButton3, False);
+end;
+
+procedure TForm_Principal.SpeedButton5MouseEnter(Sender: TObject);
+begin
+  Form_Utilitarios.mouseHover(SpeedButton5, True);
+end;
+
+procedure TForm_Principal.SpeedButton5MouseLeave(Sender: TObject);
+begin
+  Form_Utilitarios.mouseHover(SpeedButton5, False);
+end;
+
+procedure TForm_Principal.SpeedButton6MouseEnter(Sender: TObject);
+begin
+  Form_Utilitarios.mouseHover(SpeedButton6, True);
+end;
+
+procedure TForm_Principal.SpeedButton6MouseLeave(Sender: TObject);
+begin
+  Form_Utilitarios.mouseHover(SpeedButton6, False);
+end;
+
+procedure TForm_Principal.SpeedButton7MouseEnter(Sender: TObject);
+begin
+  Form_Utilitarios.mouseHover(SpeedButton7, True);
+end;
+
+procedure TForm_Principal.SpeedButton7MouseLeave(Sender: TObject);
+begin
+  Form_Utilitarios.mouseHover(SpeedButton7, False);
+end;
+
+procedure TForm_Principal.SpeedButton8MouseEnter(Sender: TObject);
+begin
+  Form_Utilitarios.mouseHover(SpeedButton8, True);
+end;
+
+procedure TForm_Principal.SpeedButton8MouseLeave(Sender: TObject);
+begin
+  Form_Utilitarios.mouseHover(SpeedButton8, False);
+end;
+
+procedure TForm_Principal.SpeedButton9MouseEnter(Sender: TObject);
+begin
+  Form_Utilitarios.mouseHover(SpeedButton9, True);
+end;
+
+procedure TForm_Principal.SpeedButton9MouseLeave(Sender: TObject);
+begin
+  Form_Utilitarios.mouseHover(SpeedButton9, False);
+end;
+
+procedure TForm_Principal.SpeedButton10MouseEnter(Sender: TObject);
+begin
+  Form_Utilitarios.mouseHover(SpeedButton10, True);
+end;
+
+procedure TForm_Principal.SpeedButton10MouseLeave(Sender: TObject);
+begin
+  Form_Utilitarios.mouseHover(SpeedButton10, False);
+end;
+
+end.

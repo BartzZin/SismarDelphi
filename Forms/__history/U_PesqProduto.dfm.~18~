@@ -1,0 +1,178 @@
+inherited Form_PesProduto: TForm_PesProduto
+  Caption = 'Pesquisa de Produtos'
+  OnClose = FormClose
+  OnShow = FormShow
+  PixelsPerInch = 96
+  TextHeight = 13
+  inherited Pnl_topPesquisa: TPanel
+    inherited cb_ChavePesquisa: TComboBox
+      Items.Strings = (
+        'CODIGO'
+        'DESCRICAO'
+        'DATA'
+        'PERIODO'
+        'ID FORNECEDOR'
+        'TODOS')
+    end
+    inherited bt_Pesquisa: TBitBtn
+      OnClick = bt_PesquisaClick
+    end
+    inherited bt_Transferir: TBitBtn
+      OnClick = bt_TransferirClick
+    end
+  end
+  inherited DBGrid1: TDBGrid
+    OnDblClick = DBGrid1DblClick
+    Columns = <
+      item
+        Expanded = False
+        FieldName = 'ID'
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'DESCRICAO'
+        Width = 204
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'VL_CUSTO'
+        Title.Caption = 'VALOR CUSTO'
+        Width = 77
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'VL_VENDA'
+        Title.Caption = 'VALOR VENDA'
+        Width = 78
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'ESTOQUE'
+        Width = 59
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'ESTOQUE_MIN'
+        Title.Caption = 'ESTOQ. MINIMO'
+        Width = 88
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'UNIDADE'
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'ID_FORNECEDOR'
+        Title.Caption = 'ID FOR'
+        Width = 44
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'NOME'
+        Title.Caption = 'NOME FORNECEDOR'
+        Width = 177
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'CADASTRO'
+        Visible = True
+      end>
+  end
+  inherited qryPesqPadrao: TFDQuery
+    SQL.Strings = (
+      'select'
+      '    produtos.id,'
+      '    produtos.descricao,'
+      '    produtos.vl_custo,'
+      '    produtos.vl_venda,'
+      '    produtos.estoque,'
+      '    produtos.estoque_min,'
+      '    produtos.unidade,'
+      '    produtos.id_fornecedor,'
+      '    fornecedor.nome,'
+      '    produtos.cadastro'
+      'from produtos'
+      ''
+      'JOIN fornecedor ON'
+      'produtos.id_fornecedor = fornecedor.id'
+      ''
+      'order by 1')
+    Left = 896
+    object qryPesqPadraoID: TIntegerField
+      FieldName = 'ID'
+      Origin = 'ID'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+    end
+    object qryPesqPadraoDESCRICAO: TStringField
+      FieldName = 'DESCRICAO'
+      Origin = 'DESCRICAO'
+      Required = True
+      Size = 100
+    end
+    object qryPesqPadraoVL_CUSTO: TFMTBCDField
+      FieldName = 'VL_CUSTO'
+      Origin = 'VL_CUSTO'
+      Required = True
+      Precision = 18
+      Size = 2
+    end
+    object qryPesqPadraoVL_VENDA: TFMTBCDField
+      FieldName = 'VL_VENDA'
+      Origin = 'VL_VENDA'
+      Required = True
+      Precision = 18
+      Size = 2
+    end
+    object qryPesqPadraoESTOQUE: TFMTBCDField
+      FieldName = 'ESTOQUE'
+      Origin = 'ESTOQUE'
+      Required = True
+      Precision = 18
+      Size = 2
+    end
+    object qryPesqPadraoESTOQUE_MIN: TFMTBCDField
+      FieldName = 'ESTOQUE_MIN'
+      Origin = 'ESTOQUE_MIN'
+      Required = True
+      Precision = 18
+      Size = 2
+    end
+    object qryPesqPadraoUNIDADE: TStringField
+      FieldName = 'UNIDADE'
+      Origin = 'UNIDADE'
+      Required = True
+      Size = 6
+    end
+    object qryPesqPadraoID_FORNECEDOR: TIntegerField
+      FieldName = 'ID_FORNECEDOR'
+      Origin = 'ID_FORNECEDOR'
+      Required = True
+    end
+    object qryPesqPadraoNOME: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'NOME'
+      Origin = 'NOME'
+      ProviderFlags = []
+      ReadOnly = True
+      Size = 100
+    end
+    object qryPesqPadraoCADASTRO: TDateField
+      FieldName = 'CADASTRO'
+      Origin = 'CADASTRO'
+      Required = True
+    end
+  end
+  inherited dsPesqPadrao: TDataSource
+    Left = 896
+  end
+end

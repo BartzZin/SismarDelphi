@@ -1,0 +1,120 @@
+unit U_Clientes;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, U_Padrao, FireDAC.Stan.Intf,
+  FireDAC.Stan.Option, FireDAC.Stan.Param, FireDAC.Stan.Error, FireDAC.DatS,
+  FireDAC.Phys.Intf, FireDAC.DApt.Intf, FireDAC.Stan.Async, FireDAC.DApt,
+  Data.DB, FireDAC.Comp.DataSet, FireDAC.Comp.Client, Vcl.DBCtrls, Vcl.StdCtrls,
+  Vcl.Buttons, Vcl.ExtCtrls, Vcl.Mask;
+
+type
+  TForm_Clientes = class(TForm_Padrao)
+    qry_PadraoID: TFDAutoIncField;
+    qry_PadraoNOME: TStringField;
+    qry_PadraoENDERECO: TStringField;
+    qry_PadraoNUMERO: TIntegerField;
+    qry_PadraoBAIRRO: TStringField;
+    qry_PadraoCIDADE: TStringField;
+    qry_PadraoUF: TStringField;
+    qry_PadraoCEP: TStringField;
+    qry_PadraoTELEFONE: TStringField;
+    qry_PadraoCNPJ: TStringField;
+    qry_PadraoCADASTRO: TDateField;
+    qry_PadraoTIPO: TStringField;
+    Label1: TLabel;
+    DBEdit1: TDBEdit;
+    Label2: TLabel;
+    dbNmCliente: TDBEdit;
+    Label3: TLabel;
+    DBEdit3: TDBEdit;
+    Label4: TLabel;
+    DBEdit4: TDBEdit;
+    Label5: TLabel;
+    DBEdit5: TDBEdit;
+    Label6: TLabel;
+    DBEdit6: TDBEdit;
+    Label7: TLabel;
+    DBEdit7: TDBEdit;
+    Label8: TLabel;
+    DBEdit8: TDBEdit;
+    Label9: TLabel;
+    DBEdit9: TDBEdit;
+    Label10: TLabel;
+    DBEdit10: TDBEdit;
+    Label11: TLabel;
+    dbCdCliente: TDBEdit;
+    Label12: TLabel;
+    RadioCNPJ: TRadioButton;
+    RadioCPF: TRadioButton;
+    DBComboBox1: TDBComboBox;
+    procedure btn_NovoClick(Sender: TObject);
+    procedure RadioCPFClick(Sender: TObject);
+    procedure RadioCNPJClick(Sender: TObject);
+    procedure FormShow(Sender: TObject);
+    procedure btn_PesquisarClick(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+    codigoPesquisa : integer;
+  end;
+
+var
+  Form_Clientes: TForm_Clientes;
+
+implementation
+
+{$R *.dfm}
+
+uses U_Utilitarios, U_PesqCliente;
+
+procedure TForm_Clientes.btn_NovoClick(Sender: TObject);
+begin
+  inherited;
+  dbCdCliente.Text := DateToStr(now);
+  dbNmCliente.SetFocus;
+end;
+
+procedure TForm_Clientes.btn_PesquisarClick(Sender: TObject);
+begin
+  inherited;
+  Form_PesCliente := TForm_PesCliente.Create(self);
+  Form_PesCliente.ShowModal;
+  try
+    if Form_PesCliente.codigo > 0 then
+    begin
+      qry_Padrao.Close;
+      qry_Padrao.Open;
+      qry_Padrao.Locate('ID', Form_PesCliente.codigo, []);
+    end;
+  finally
+    Form_PesCliente.Free;
+    Form_PesCliente := nil;
+  end;
+end;
+
+procedure TForm_Clientes.FormShow(Sender: TObject);
+begin
+  inherited;
+  qry_Padrao.Close;
+  qry_Padrao.open;
+end;
+
+procedure TForm_Clientes.RadioCNPJClick(Sender: TObject);
+begin
+  qry_PadraoCNPJ.EditMask := '99.999.999/9999-99;0;_';
+  dbCdCliente.Text := DateToStr(now);
+
+end;
+
+procedure TForm_Clientes.RadioCPFClick(Sender: TObject);
+begin
+  qry_PadraoCNPJ.EditMask := '999.999.999-99;0;_';
+  dbCdCliente.Text := DateToStr(now);
+
+end;
+
+end.

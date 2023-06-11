@@ -1,0 +1,78 @@
+unit U_Empresa;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, U_Padrao, FireDAC.Stan.Intf,
+  FireDAC.Stan.Option, FireDAC.Stan.Param, FireDAC.Stan.Error, FireDAC.DatS,
+  FireDAC.Phys.Intf, FireDAC.DApt.Intf, FireDAC.Stan.Async, FireDAC.DApt,
+  Vcl.DBCtrls, Vcl.StdCtrls, Vcl.Mask, Data.DB, FireDAC.Comp.DataSet,
+  FireDAC.Comp.Client, Vcl.Buttons, Vcl.ExtCtrls;
+
+type
+  TForm_Empresa = class(TForm_Padrao)
+    qry_PadraoID: TIntegerField;
+    qry_PadraoRAZAO_SOCIAL: TStringField;
+    qry_PadraoN_FANTASIA: TStringField;
+    qry_PadraoENDERECO: TStringField;
+    qry_PadraoNUMERO: TIntegerField;
+    qry_PadraoBAIRRO: TStringField;
+    qry_PadraoCIDADE: TStringField;
+    qry_PadraoUF: TStringField;
+    qry_PadraoTELEFONE: TStringField;
+    qry_PadraoCPF_CNPJ: TStringField;
+    qry_PadraoEMAIL: TStringField;
+    qry_PadraoCADASTRO: TDateField;
+    qry_PadraoLOGO: TBlobField;
+    qry_PadraoCEP: TStringField;
+    Label1: TLabel;
+    dbIdEmpresa: TDBEdit;
+    Label2: TLabel;
+    dbRazaoSocial: TDBEdit;
+    Label3: TLabel;
+    DBEdit3: TDBEdit;
+    Label4: TLabel;
+    DBEdit4: TDBEdit;
+    Label5: TLabel;
+    DBEdit5: TDBEdit;
+    Label6: TLabel;
+    DBEdit6: TDBEdit;
+    Label7: TLabel;
+    DBEdit7: TDBEdit;
+    Label8: TLabel;
+    DBEdit8: TDBEdit;
+    Label9: TLabel;
+    DBEdit9: TDBEdit;
+    Label10: TLabel;
+    DBEdit10: TDBEdit;
+    Label11: TLabel;
+    DBEdit11: TDBEdit;
+    Label12: TLabel;
+    dbCdEmpresa: TDBEdit;
+    Label13: TLabel;
+    DBImage1: TDBImage;
+    Label14: TLabel;
+    DBEdit13: TDBEdit;
+    procedure btn_NovoClick(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  Form_Empresa: TForm_Empresa;
+
+implementation
+
+{$R *.dfm}
+
+procedure TForm_Empresa.btn_NovoClick(Sender: TObject);
+begin
+  inherited;
+  dbCdEmpresa.Text := DateToStr(now);
+  dbRazaoSocial.SetFocus;
+end;
+
+end.

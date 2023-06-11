@@ -1,0 +1,25 @@
+inherited Form_PesPGTOcp: TForm_PesPGTOcp
+  Caption = 'Forma de Pagamento'
+  PixelsPerInch = 96
+  TextHeight = 13
+  inherited qry_ProdFornecedor: TFDQuery
+    SQL.Strings = (
+      'select'
+      '    forma_pagamento.id,'
+      '    forma_pagamento.descricao,'
+      '    forma_pagamento.cadastro'
+      ''
+      'from forma_pagamento')
+    object qry_ProdFornecedorDESCRICAO: TStringField
+      FieldName = 'DESCRICAO'
+      Origin = 'DESCRICAO'
+      Required = True
+      Size = 100
+    end
+    object qry_ProdFornecedorCADASTRO: TDateField
+      FieldName = 'CADASTRO'
+      Origin = 'CADASTRO'
+      Required = True
+    end
+  end
+end

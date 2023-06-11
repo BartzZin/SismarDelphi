@@ -1,0 +1,43 @@
+program P_ControleEstoque;
+
+uses
+  Winapi.Windows,
+  System.UITypes,
+  Winapi.Messages,
+  System.SysUtils,
+  System.Variants,
+  System.Classes,
+  Vcl.Graphics,
+  Vcl.Controls,
+  Vcl.Forms,
+  Vcl.Dialogs,
+  Vcl.Buttons,
+  Vcl.ExtCtrls,
+  Vcl.ComCtrls,
+  Vcl.Menus,
+  U_Principal in '..\Forms\U_Principal.pas' {Form_Principal},
+  U_DM in '..\Forms\U_DM.pas' {DM: TDataModule},
+  U_Padrao in '..\Forms\U_Padrao.pas' {Form_Padrao},
+  U_Usuarios in '..\Forms\U_Usuarios.pas' {Form_Usuarios},
+  U_Empresa in '..\Forms\U_Empresa.pas' {Form_Empresa},
+  U_Clientes in '..\Forms\U_Clientes.pas' {Form_Clientes},
+  U_Utilitarios in '..\Forms\U_Utilitarios.pas' {Form_Utilitarios},
+  U_Produtos in '..\Forms\U_Produtos.pas' {Form_Produtos},
+  U_PesqProdFornecedor in '..\Forms\U_PesqProdFornecedor.pas' {Form_PesForneProduto},
+  U_FormaPagamento in '..\Forms\U_FormaPagamento.pas' {Form_Pagamentos};
+
+{$R *.res}
+
+begin
+  Application.Initialize;
+  Application.MainFormOnTaskbar := True;
+  Application.CreateForm(TDM, DM);
+  Application.CreateForm(TForm_Principal, Form_Principal);
+  Application.Run;
+
+
+
+
+
+
+end.

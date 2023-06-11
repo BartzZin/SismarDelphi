@@ -1,0 +1,201 @@
+inherited Form_PesCliente: TForm_PesCliente
+  Caption = 'Pesquisa de Cliente'
+  ClientHeight = 691
+  ClientWidth = 952
+  OnClose = FormClose
+  OnShow = FormShow
+  ExplicitWidth = 958
+  ExplicitHeight = 720
+  PixelsPerInch = 96
+  TextHeight = 13
+  inherited Pnl_topPesquisa: TPanel
+    Width = 952
+    ExplicitWidth = 952
+    inherited lbl_descPesquisa: TLabel
+      Top = 14
+      ExplicitTop = 14
+    end
+    inherited bt_Pesquisa: TBitBtn
+      OnClick = bt_PesquisaClick
+    end
+    inherited bt_Transferir: TBitBtn
+      ModalResult = 1
+      OnClick = bt_TransferirClick
+    end
+  end
+  inherited DBGrid1: TDBGrid
+    Width = 952
+    Height = 570
+    OnDblClick = DBGrid1DblClick
+    Columns = <
+      item
+        Expanded = False
+        FieldName = 'ID'
+        Width = 72
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'NOME'
+        Width = 289
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'ENDERECO'
+        Width = 409
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'NUMERO'
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'BAIRRO'
+        Width = 197
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'CIDADE'
+        Width = 195
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'UF'
+        Width = 33
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'CEP'
+        Width = 106
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'TELEFONE'
+        Width = 102
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'CNPJ'
+        Width = 119
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'CADASTRO'
+        Width = 71
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'TIPO'
+        Width = 33
+        Visible = True
+      end>
+  end
+  inherited pnl_PesFooter: TPanel
+    Top = 650
+    Width = 952
+    ExplicitTop = 650
+    ExplicitWidth = 952
+  end
+  inherited qryPesqPadrao: TFDQuery
+    SQL.Strings = (
+      'SELECT'
+      '    FORNECEDOR.ID,'
+      '    FORNECEDOR.NOME,'
+      '    FORNECEDOR.ENDERECO,'
+      '    FORNECEDOR.NUMERO,'
+      '    FORNECEDOR.BAIRRO,'
+      '    FORNECEDOR.CIDADE,'
+      '    FORNECEDOR.UF,'
+      '    FORNECEDOR.CEP,'
+      '    FORNECEDOR.TELEFONE,'
+      '    FORNECEDOR.CNPJ,'
+      '    FORNECEDOR.CADASTRO,'
+      '    FORNECEDOR.TIPO'
+      'FROM FORNECEDOR')
+    Top = 112
+    object qryPesqPadraoID: TIntegerField
+      FieldName = 'ID'
+      Origin = 'ID'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+    end
+    object qryPesqPadraoNOME: TStringField
+      FieldName = 'NOME'
+      Origin = 'NOME'
+      Required = True
+      Size = 100
+    end
+    object qryPesqPadraoENDERECO: TStringField
+      FieldName = 'ENDERECO'
+      Origin = 'ENDERECO'
+      Required = True
+      Size = 100
+    end
+    object qryPesqPadraoNUMERO: TIntegerField
+      FieldName = 'NUMERO'
+      Origin = 'NUMERO'
+      Required = True
+    end
+    object qryPesqPadraoBAIRRO: TStringField
+      FieldName = 'BAIRRO'
+      Origin = 'BAIRRO'
+      Required = True
+      Size = 100
+    end
+    object qryPesqPadraoCIDADE: TStringField
+      FieldName = 'CIDADE'
+      Origin = 'CIDADE'
+      Required = True
+      Size = 100
+    end
+    object qryPesqPadraoUF: TStringField
+      FieldName = 'UF'
+      Origin = 'UF'
+      Required = True
+      FixedChar = True
+      Size = 2
+    end
+    object qryPesqPadraoCEP: TStringField
+      FieldName = 'CEP'
+      Origin = 'CEP'
+      Required = True
+      Size = 16
+    end
+    object qryPesqPadraoTELEFONE: TStringField
+      FieldName = 'TELEFONE'
+      Origin = 'TELEFONE'
+      Required = True
+      Size = 15
+    end
+    object qryPesqPadraoCNPJ: TStringField
+      FieldName = 'CNPJ'
+      Origin = 'CNPJ'
+      Required = True
+    end
+    object qryPesqPadraoCADASTRO: TDateField
+      FieldName = 'CADASTRO'
+      Origin = 'CADASTRO'
+      Required = True
+    end
+    object qryPesqPadraoTIPO: TStringField
+      FieldName = 'TIPO'
+      Origin = 'TIPO'
+      Required = True
+      FixedChar = True
+      Size = 1
+    end
+  end
+  inherited dsPesqPadrao: TDataSource
+    Top = 168
+  end
+end

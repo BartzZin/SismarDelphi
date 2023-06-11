@@ -1,0 +1,78 @@
+object Form_FortesClientes: TForm_FortesClientes
+  Left = 0
+  Top = 0
+  Caption = 'Relat'#243'rio de Clientes'
+  ClientHeight = 675
+  ClientWidth = 795
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  OldCreateOrder = False
+  PixelsPerInch = 96
+  TextHeight = 13
+  object RLReport1: TRLReport
+    Left = 0
+    Top = 0
+    Width = 794
+    Height = 1123
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clBlack
+    Font.Height = -13
+    Font.Name = 'Arial'
+    Font.Style = []
+    object RLBHeader: TRLBand
+      Left = 38
+      Top = 38
+      Width = 718
+      Height = 59
+      BandType = btHeader
+      object RLSystemInfo1: TRLSystemInfo
+        Left = 512
+        Top = 13
+        Width = 204
+        Height = 16
+        Info = itFullDate
+        Text = ''
+      end
+      object RLSystemInfo2: TRLSystemInfo
+        Left = 628
+        Top = 32
+        Width = 87
+        Height = 16
+        Alignment = taRightJustify
+        Info = itPageNumber
+        Text = ''
+      end
+    end
+    object RLBDatail: TRLBand
+      Left = 38
+      Top = 215
+      Width = 718
+      Height = 59
+    end
+    object RLBFooter: TRLBand
+      Left = 38
+      Top = 274
+      Width = 718
+      Height = 59
+      BandType = btColumnFooter
+    end
+    object RLBTitle: TRLBand
+      Left = 38
+      Top = 97
+      Width = 718
+      Height = 59
+      BandType = btTitle
+    end
+    object RLBColumHeader: TRLBand
+      Left = 38
+      Top = 156
+      Width = 718
+      Height = 59
+      BandType = btColumnHeader
+    end
+  end
+end

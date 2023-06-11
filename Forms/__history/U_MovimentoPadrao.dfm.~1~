@@ -1,0 +1,10 @@
+inherited Form_PadraoMovimento: TForm_PadraoMovimento
+  Caption = 'Fomulario de movimento'
+  ClientHeight = 506
+  ExplicitHeight = 535
+  PixelsPerInch = 96
+  TextHeight = 13
+  inherited Panel2: TPanel
+    Top = 465
+  end
+end

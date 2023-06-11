@@ -1,0 +1,125 @@
+object Form_Padrao: TForm_Padrao
+  Left = 0
+  Top = 0
+  BorderStyle = bsDialog
+  Caption = 'Formalario Padrao'
+  ClientHeight = 331
+  ClientWidth = 740
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  KeyPreview = True
+  OldCreateOrder = False
+  OnKeyPress = FormKeyPress
+  PixelsPerInch = 96
+  TextHeight = 13
+  object Panel1: TPanel
+    Left = 0
+    Top = 0
+    Width = 740
+    Height = 49
+    Align = alTop
+    Color = clActiveCaption
+    ParentBackground = False
+    TabOrder = 0
+    ExplicitWidth = 645
+    object btn_Novo: TBitBtn
+      Left = 8
+      Top = 3
+      Width = 90
+      Height = 45
+      Caption = '&Novo'
+      TabOrder = 0
+      OnClick = btn_NovoClick
+    end
+    object btn_Deletar: TBitBtn
+      Left = 115
+      Top = 3
+      Width = 90
+      Height = 45
+      Caption = '&Deletar'
+      TabOrder = 1
+      OnClick = btn_DeletarClick
+    end
+    object btn_Alterar: TBitBtn
+      Left = 222
+      Top = 3
+      Width = 90
+      Height = 45
+      Caption = '&Alterar'
+      TabOrder = 2
+      OnClick = btn_AlterarClick
+    end
+    object btn_Gravar: TBitBtn
+      Left = 329
+      Top = 3
+      Width = 90
+      Height = 45
+      Caption = '&Gravar'
+      Enabled = False
+      TabOrder = 3
+      OnClick = btn_GravarClick
+    end
+    object btn_Cancelar: TBitBtn
+      Left = 436
+      Top = 3
+      Width = 90
+      Height = 45
+      Caption = '&Cancelar'
+      TabOrder = 4
+      OnClick = btn_CancelarClick
+    end
+    object btn_Atualizar: TBitBtn
+      Left = 540
+      Top = 3
+      Width = 90
+      Height = 45
+      Caption = '&Atualizar'
+      Enabled = False
+      TabOrder = 5
+      OnClick = btn_AtualizarClick
+    end
+    object btn_Pesquisar: TBitBtn
+      Left = 644
+      Top = 3
+      Width = 90
+      Height = 45
+      Caption = '&Pesquisar'
+      TabOrder = 6
+    end
+  end
+  object Panel2: TPanel
+    Left = 0
+    Top = 290
+    Width = 740
+    Height = 41
+    Align = alBottom
+    Color = clActiveCaption
+    ParentBackground = False
+    TabOrder = 1
+    ExplicitTop = 47
+    ExplicitWidth = 645
+    object DBNavigator1: TDBNavigator
+      Left = 136
+      Top = 8
+      Width = 456
+      Height = 25
+      DataSource = ds_Padrao
+      VisibleButtons = [nbFirst, nbPrior, nbNext, nbLast]
+      TabOrder = 0
+    end
+  end
+  object qry_Padrao: TFDQuery
+    Connection = DM.Conexao
+    Left = 664
+    Top = 88
+  end
+  object ds_Padrao: TDataSource
+    DataSet = qry_Padrao
+    Left = 664
+    Top = 144
+  end
+end

@@ -1,0 +1,34 @@
+object DM: TDM
+  OldCreateOrder = False
+  OnCreate = DataModuleCreate
+  Height = 348
+  Width = 568
+  object Conexao: TFDConnection
+    Params.Strings = (
+      'User_Name=SYSDBA'
+      'Password=masterkey'
+      'Server=localhost'
+      'Port=3050'
+      'CharacterSet=iso8859_1'
+      
+        'Database=C:\Users\Lucas Lara\Desktop\delphi\Udemy\Banco\CURSOUDE' +
+        'MY.FDB'
+      'DriverID=FB')
+    LoginPrompt = False
+    Left = 24
+    Top = 16
+  end
+  object Transacao: TFDTransaction
+    Connection = Conexao
+    Left = 80
+    Top = 16
+  end
+  object FDPhysFBDriverLink1: TFDPhysFBDriverLink
+    Left = 512
+    Top = 16
+  end
+  object OpenDialog1: TOpenDialog
+    Left = 16
+    Top = 288
+  end
+end

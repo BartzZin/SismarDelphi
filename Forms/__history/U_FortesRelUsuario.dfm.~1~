@@ -1,0 +1,25 @@
+inherited Form_RelUsuario: TForm_RelUsuario
+  Caption = 'Relat'#243'rio de Usu'#225'rios'
+  PixelsPerInch = 96
+  TextHeight = 13
+  inherited RLReportPadrao: TRLReport
+    inherited RLBandTitle: TRLBand
+      Height = 42
+      ExplicitHeight = 42
+    end
+    inherited RLBandColumHeader: TRLBand
+      Top = 121
+      ExplicitTop = 121
+    end
+    inherited RLBandItens: TRLBand
+      Top = 178
+      ExplicitTop = 178
+    end
+    inherited RLBandFooter: TRLBand
+      Top = 240
+      Height = 65
+      ExplicitTop = 240
+      ExplicitHeight = 65
+    end
+  end
+end

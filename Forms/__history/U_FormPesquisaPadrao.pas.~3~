@@ -1,0 +1,46 @@
+unit U_FormPesquisaPadrao;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ExtCtrls, Data.DB,
+  FireDAC.Stan.Intf, FireDAC.Stan.Option, FireDAC.Stan.Param,
+  FireDAC.Stan.Error, FireDAC.DatS, FireDAC.Phys.Intf, FireDAC.DApt.Intf,
+  FireDAC.Stan.Async, FireDAC.DApt, FireDAC.Comp.DataSet, FireDAC.Comp.Client,
+  Vcl.Buttons, Vcl.Grids, Vcl.DBGrids, Vcl.Mask;
+
+type
+  TForm_PesPadrao = class(TForm)
+    Pnl_topPesquisa: TPanel;
+    cb_ChavePesquisa: TComboBox;
+    lbl_opsPesquisa: TLabel;
+    ed_PesquisaNome: TEdit;
+    mk_Inicio: TMaskEdit;
+    mk_Fim: TMaskEdit;
+    lbl_descPesquisa: TLabel;
+    lbl_dtinicio: TLabel;
+    lbl_dtFim: TLabel;
+    DBGrid1: TDBGrid;
+    pnl_PesFooter: TPanel;
+    bt_Pesquisa: TBitBtn;
+    bt_Transferir: TBitBtn;
+    bt_Imprimir: TBitBtn;
+    qryPesqPadrao: TFDQuery;
+    dsPesqPadrao: TDataSource;
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  Form_PesPadrao: TForm_PesPadrao;
+
+implementation
+
+{$R *.dfm}
+
+uses U_DM;
+
+end.
